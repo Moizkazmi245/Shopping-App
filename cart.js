@@ -24,7 +24,7 @@ function plusQt(index) {
 
 function minusQt(index) {
     let qtNum2 = document.querySelector(`.qt-num${index}`)
-    if(qtNum2 > "1"){
+    if(qtNum2.innerHTML > "1"){
 
         qtNum2.innerHTML --;
     }
