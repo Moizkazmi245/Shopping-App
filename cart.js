@@ -65,7 +65,7 @@ function deleteItem(index) {
             renderCart();
             swalWithBootstrapButtons.fire({
                 title: "Deleted!",
-                text: "Your file has been deleted.",
+                text: "Your product has been deleted.",
                 icon: "success"
             });
         } else if (
@@ -83,17 +83,20 @@ function deleteItem(index) {
 
 
 function buyNow() {
-    Swal.fire({
-        title: "Your order has been placed successfully.",
-        width: 600,
-        padding: "3em",
-        color: "#716add",
-        background: "#fff url(/images/trees.png)",
-        backdrop: `
-          rgba(0,0,123,0.4)
-          url("/images/nyan-cat.gif")
-          left top
-          no-repeat
-        `
-    });
+    if(cartItems.length > 0){
+
+        Swal.fire({
+            title: "Your order has been placed successfully.",
+            width: 600,
+            padding: "3em",
+            color: "#716add",
+            background: "#fff url(/images/trees.png)",
+            backdrop: `
+              rgba(0,0,123,0.4)
+              url("/images/nyan-cat.gif")
+              left top
+              no-repeat
+            `
+        });
+    }
 }
