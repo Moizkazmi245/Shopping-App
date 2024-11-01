@@ -10,11 +10,12 @@ function updateLocalStorage() {
     localStorage.setItem("cart", JSON.stringify(cartItems));
 }
 const output = document.querySelector('#output');
+const totalPriceElement = document.querySelector('#total-price');
 
 function renderCart() {
     output.innerHTML = '';
     cartItems.map((item, index) => {
-        output.innerHTML += `<div class="cards border border-3 border-white p-5 rounded w-25">
+        output.innerHTML += `<div class="cards  border border-3 border-white p-5 rounded w-25">
             <h2>Brand : ${item.brand}</h2>
             <h2>Model : ${item.model}</h2>
             <h2>Price : $${item.price}</h2>
@@ -22,6 +23,7 @@ function renderCart() {
             <button class="btn btn-danger mt-3" onclick="deleteItem(${index})">Delete</button>
         </div>`;
     });
+    calculateTotal();
 }
 
 renderCart();
@@ -31,6 +33,8 @@ function plusQt(index) {
     qtNum.innerHTML = +qtNum.innerHTML + 1;
     cartItems[index].quantity += 1;
     updateLocalStorage();
+    calculateTotal();
+
 }
 
 function minusQt(index) {
@@ -39,6 +43,8 @@ function minusQt(index) {
         qtNum.innerHTML = +qtNum.innerHTML - 1;
         cartItems[index].quantity -= 1;
         updateLocalStorage();
+        calculateTotal();
+
     }
 }
 
@@ -82,8 +88,14 @@ function deleteItem(index) {
 }
 
 
+function calculateTotal() {
+    let total = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
+    totalPriceElement.innerHTML = `Total Price: $${total}`;
+}
+
+
 function buyNow() {
-    if(cartItems.length > 0){
+    if (cartItems.length > 0) {
 
         Swal.fire({
             title: "Your order has been placed successfully.",

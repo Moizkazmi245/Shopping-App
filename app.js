@@ -174,7 +174,7 @@ console.log("cart items ====>", cartItems);
 const container = document.querySelector('#container');
 
 phones.map((items, index) => {
-    container.innerHTML += ` <div  class="cards border border-3 border-white p-5 rounded w-25 zoom-effect">
+    container.innerHTML += ` <div  class="cards col-12 col-sm-6 col-md-4 col-lg-3  border border-3 border-white p-5 rounded w-25 zoom-effect">
         <h2>Model : ${items.model} ${items.brand}</h2>
         <h2>Price : $${items.price}</h2>
         <button class="btn btn-primary mt-3" onclick="addToCart(${index})">Add to Cart</button>
